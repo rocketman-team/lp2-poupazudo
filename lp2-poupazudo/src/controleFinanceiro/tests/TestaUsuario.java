@@ -1,4 +1,4 @@
-package controleFinanceiro.testes;
+package controleFinanceiro.tests;
 
 import org.junit.Test;
 
