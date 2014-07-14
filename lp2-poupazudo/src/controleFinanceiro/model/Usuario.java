@@ -87,7 +87,7 @@ public class Usuario {
 	}
 
 	/**
-	 * Checa se o existe
+	 * Checa se o nome não é vazio
 	 * 
 	 * @param nome
 	 *            Nome do usuário
