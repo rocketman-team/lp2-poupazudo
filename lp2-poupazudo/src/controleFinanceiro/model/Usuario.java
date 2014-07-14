@@ -1,11 +1,9 @@
 package controleFinanceiro.model;
 
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import controleFinanceiro.exceptions.EmailDuplicadoException;
 import controleFinanceiro.exceptions.EmailIncorretoException;
+import controleFinanceiro.exceptions.NomeIncorretoException;
+import controleFinanceiro.exceptions.SenhaInseguraException;
+import controleFinanceiro.util.Email;
 
 /**
  * Classe que representa o usuário
@@ -21,7 +19,9 @@ public class Usuario {
 
 	private String senha;
 
-	private List<String> dicasDeSenhas;
+	private String dicaDeSenha;
+
+	private boolean status;
 
 	/**
 	 * Inicializa um novo usuário
@@ -32,33 +32,102 @@ public class Usuario {
 	 *            Nome do usuário
 	 * @param senha
 	 *            Senha do usuário
-	 * @throws EmailDuplicadoException
+	 * @throws NomeIncorretoException
 	 *             Email já esta associada a uma conta
 	 * @throws EmailIncorretoException
 	 *             Email incorreto
+	 * @throws SenhaInseguraException
 	 * @throws Exception
 	 */
-	public Usuario(String email, String nome, String senha)
-			throws EmailIncorretoException, EmailDuplicadoException {
+	public Usuario(String nome, String email, String senha)
+			throws EmailIncorretoException, NomeIncorretoException,
+			SenhaInseguraException {
 
-		setEmail(email);
+		checaNome(nome);
+		checaEmail(email);
+		checaSenha(senha);
+
 		setNome(nome);
+		setEmail(email);
 		setSenha(senha);
+		setStatus(false);
 	}
 
 	/**
-	 * Verifica se o email já está associado a uma conta
+	 * Inicializa um novo usuário
+	 * 
+	 * @param nome
+	 *            Nome do usuário
+	 * @param email
+	 *            Email do usuário
+	 * @param senha
+	 *            Senha do usuário
+	 * @param dica
+	 *            Dica de senha do usuário
+	 * @throws EmailIncorretoException
+	 *             Email já esta associada a uma conta
+	 * @throws NomeIncorretoException
+	 *             NomeIncorretoException
+	 * @throws SenhaInseguraException
+	 *             SenhaInseguraException
+	 */
+	public Usuario(String nome, String email, String senha, String dica)
+			throws EmailIncorretoException, NomeIncorretoException,
+			SenhaInseguraException {
+
+		checaNome(nome);
+		checaEmail(email);
+		checaSenha(senha);
+
+		setNome(nome);
+		setEmail(email);
+		setSenha(senha);
+		setDicaDeSenha(dica);
+		setStatus(false);
+	}
+
+	/**
+	 * Checa se o existe
+	 * 
+	 * @param nome
+	 *            Nome do usuário
+	 * @throws NomeIncorretoException
+	 *             Nome incorreto
+	 */
+	private void checaNome(String nome) throws NomeIncorretoException {
+
+		if (nome == null || nome.length() == 0)
+			throw new NomeIncorretoException();
+
+	}
+
+	/**
+	 * Checa se o email é válido
 	 * 
 	 * @param email
 	 *            Email do usuário
-	 * @throws EmailDuplicadoException
-	 *             Email já está associado a uma conta
+	 * @throws EmailIncorretoException
+	 *             Email incorreto
 	 */
-	private void verificaDisponibilidade(String email)
-			throws EmailDuplicadoException {
+	private void checaEmail(String email) throws EmailIncorretoException {
 
-		// TODO se existir uma conta com esse email
-		// throw new EmailDuplicadoException();
+		if (!Email.vericaEmail(email))
+			throw new EmailIncorretoException();
+
+	}
+
+	/**
+	 * Checa se a senha é segura
+	 * 
+	 * @param senha
+	 *            Senha do usuário
+	 * @throws SenhaInseguraException
+	 *             Senha insegura
+	 */
+	private void checaSenha(String senha) throws SenhaInseguraException {
+
+		if (senha.length() < 6 || senha.length() > 8)
+			throw new SenhaInseguraException();
 	}
 
 	/**
@@ -71,17 +140,16 @@ public class Usuario {
 	}
 
 	/**
+	 * Define o email do usuário
 	 * 
 	 * @param email
+	 *            Email do usuário
 	 * @throws EmailIncorretoException
-	 * @throws EmailDuplicadoException
+	 *             Email já esta associada a uma conta
+	 * @throws NomeIncorretoException
+	 *             Nome incorreto
 	 */
-	public void setEmail(String email) throws EmailIncorretoException,
-			EmailDuplicadoException {
-
-		checaEmail(email);
-		verificaDisponibilidade(email);
-
+	public void setEmail(String email) {
 		this.email = email;
 	}
 
@@ -120,35 +188,66 @@ public class Usuario {
 	 *            Senha do usuário
 	 */
 	public void setSenha(String senha) {
-		if (senha.length() >= 6 && senha.length() <= 8)
-			this.senha = senha;
+		this.senha = senha;
 	}
 
 	/**
-	 * Gera uma dica de senha para o usuário
+	 * Retorna a dica e senha do usupario
 	 * 
-	 * @return Dicas de senhas
+	 * @return
 	 */
-	public List<String> gerarDicasDeSenha() {
-
-		return dicasDeSenhas;
+	public String getDicaDeSenha() {
+		return dicaDeSenha;
 	}
 
 	/**
-	 * Checa se o email é válido
+	 * Define a dica de senha do usuário
 	 * 
-	 * @param email
-	 *            Email do usuário
-	 * @throws EmailIncorretoException
-	 *             Email incorreto
+	 * @param dicaDeSenha
+	 *            Dica de senha
 	 */
-	private void checaEmail(String email) throws EmailIncorretoException {
-		Pattern pattern = Pattern
-				.compile("^[\\w-]+(\\.[\\w-]+)*@([\\w-]+\\.)+[a-zA-Z]{2,7}$");
-		Matcher matcher = pattern.matcher(email);
-
-		if (!matcher.find())
-			throw new EmailIncorretoException();
-
+	public void setDicaDeSenha(String dicaDeSenha) {
+		this.dicaDeSenha = dicaDeSenha;
 	}
+
+	/**
+	 * Retorna status do usuário
+	 * 
+	 * @return Status do usuário
+	 */
+	public boolean isStatus() {
+		return status;
+	}
+
+	/**
+	 * Define stats do usuário
+	 * 
+	 * @param status Status do usuário
+	 */
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Usuario other = (Usuario) obj;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Usuario [nome=" + nome + ", email=" + email + "]";
+	}
+
 }
