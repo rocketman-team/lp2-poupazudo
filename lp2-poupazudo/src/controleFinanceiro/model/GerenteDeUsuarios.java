@@ -1,11 +1,13 @@
 package controleFinanceiro.model;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import controleFinanceiro.exceptions.SenhaIncorrentaException;
 import controleFinanceiro.exceptions.UsuarioInexistenteException;
 import controleFinanceiro.exceptions.UsuarioJaExisteException;
+import controleFinanceiro.util.Arquivo;
 
 /**
  * Esta classe representa um Gerente de usuários no qual mantém armazenado uma
@@ -18,13 +20,15 @@ public class GerenteDeUsuarios {
 
 	private static List<Usuario> usuarios;
 
-	private Usuario usuarioLocal;
+	private static Usuario usuarioLocal;
 
 	/**
 	 * Inicializa a lista de usuários do controle financeiro
+	 * 
+	 * @throws IOException
 	 */
 	public GerenteDeUsuarios() {
-		usuarios = new ArrayList<Usuario>();
+		recuperarDados();
 	}
 
 	/**
@@ -53,12 +57,12 @@ public class GerenteDeUsuarios {
 	 * @return Usuário
 	 */
 	public Usuario pesquisar(String email) {
-
-		for (Usuario usr : usuarios) {
-			if (usr.getEmail().equals(email))
-				return usr;
-		}
-
+		
+			for (Usuario usr : usuarios) {
+				if (usr.getEmail().equals(email))
+					return usr;
+			}
+		
 		return null;
 	}
 
@@ -90,4 +94,37 @@ public class GerenteDeUsuarios {
 
 		return true;
 	}
+
+	public static void recuperarDados() {
+		try {
+			usuarios = (ArrayList<Usuario>) Arquivo.abrir();
+			if (usuarios == null)
+				usuarios = new ArrayList<Usuario>();
+		} catch (IOException e) {
+			System.out.println("Erro ao recuperar dados do usuário");
+			e.printStackTrace();
+		}
+	}
+
+	public static void atualizar() {
+		try {
+			Arquivo.salvar(usuarios);
+		} catch (IOException e) {
+			System.out.println("Erro ao tentar atualizar dos dados.");
+		}
+	}
+
+	public static List<Usuario> getUsuarios() {
+		return usuarios;
+	}
+
+	public static Usuario getUsuarioLocal() {
+		return usuarioLocal;
+	}
+	
+	public static void logout() {
+		atualizar();
+		usuarioLocal = null;
+	}
+	
 }

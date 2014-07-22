@@ -1,5 +1,7 @@
 package controleFinanceiro.model;
 
+import java.io.Serializable;
+
 import controleFinanceiro.exceptions.EmailIncorretoException;
 import controleFinanceiro.exceptions.NomeIncorretoException;
 import controleFinanceiro.exceptions.SenhaInseguraException;
@@ -11,7 +13,12 @@ import controleFinanceiro.util.Email;
  * @author team
  * 
  */
-public class Usuario {
+public class Usuario implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4928907760275398473L;
 
 	private String nome;
 

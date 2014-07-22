@@ -3,6 +3,7 @@ package controleFinanceiro.tests;
 import org.junit.Assert;
 import org.junit.Test;
 
+import projetop2.utils.ProjetoHelperExceptions;
 import controleFinanceiro.exceptions.EmailIncorretoException;
 import controleFinanceiro.exceptions.NomeIncorretoException;
 import controleFinanceiro.exceptions.SenhaIncorrentaException;
@@ -26,7 +27,8 @@ public class TesteGerenteDeUsuario {
 	}
 
 	@Test
-	public void testeAdicionaUsuarioJaExistente() {
+	public void testeAdicionaUsuarioJaExistente()
+			throws ProjetoHelperExceptions {
 
 		GerenteDeUsuarios gerente = new GerenteDeUsuarios();
 
@@ -52,7 +54,7 @@ public class TesteGerenteDeUsuario {
 	@Test
 	public void testePesquisaUsuarioPorEmail() throws UsuarioJaExisteException,
 			EmailIncorretoException, NomeIncorretoException,
-			SenhaInseguraException {
+			SenhaInseguraException, ProjetoHelperExceptions {
 
 		GerenteDeUsuarios gerente = new GerenteDeUsuarios();
 
@@ -72,7 +74,7 @@ public class TesteGerenteDeUsuario {
 	public void testeRealizaLogin() throws UsuarioJaExisteException,
 			EmailIncorretoException, NomeIncorretoException,
 			SenhaInseguraException, UsuarioInexistenteException,
-			SenhaIncorrentaException {
+			SenhaIncorrentaException, ProjetoHelperExceptions {
 
 		GerenteDeUsuarios gerente = new GerenteDeUsuarios();
 
@@ -92,7 +94,7 @@ public class TesteGerenteDeUsuario {
 	public void testeRealizaLoginDeUsuarioInexistente()
 			throws UsuarioJaExisteException, EmailIncorretoException,
 			NomeIncorretoException, SenhaInseguraException,
-			SenhaIncorrentaException {
+			SenhaIncorrentaException, ProjetoHelperExceptions {
 
 		GerenteDeUsuarios gerente = new GerenteDeUsuarios();
 
@@ -112,7 +114,7 @@ public class TesteGerenteDeUsuario {
 	@Test
 	public void testeSenhaIncorreta() throws UsuarioJaExisteException,
 			EmailIncorretoException, NomeIncorretoException,
-			SenhaInseguraException {
+			SenhaInseguraException, ProjetoHelperExceptions {
 
 		GerenteDeUsuarios gerente = new GerenteDeUsuarios();
 
