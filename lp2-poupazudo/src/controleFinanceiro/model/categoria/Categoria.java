@@ -1,14 +1,52 @@
 package controleFinanceiro.model.categoria;
 
-public enum Categoria {
+import java.util.Arrays;
 
-	ALIMENTACAO(1), EDUCACAO(2), LAZER(3), MORADIA(4), PAGAMENTOS(5), 
-	TRANSPORTE(6), ROUPA(7), SAUDE(8), ALUGUEL(9);
-
-	public int tipo;
-
-	Categoria(int value) {
-		tipo = value;
+public class Categoria {
+	private String nome;
+	private int[] cor;
+	
+	public Categoria(String nome, int[] cor) {
+		this.nome = nome;
+		this.cor = cor;
 	}
 
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public int[] getCor() {
+		return cor;
+	}
+
+	public void setCor(int[] cor) {
+		this.cor = cor;
+	}
+
+@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof Categoria))
+			return false;
+		Categoria other = (Categoria) obj;
+		if (!Arrays.equals(cor, other.cor))
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		return true;
+	}
+@Override
+	public String toString() {
+		return "Nome " + nome + ", Cor " + Arrays.toString(cor);
+	}
 }
