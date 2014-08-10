@@ -1,7 +1,5 @@
 package controleFinanceiro.model;
 
-import java.io.Serializable;
-
 import controleFinanceiro.exceptions.EmailIncorretoException;
 import controleFinanceiro.exceptions.NomeIncorretoException;
 import controleFinanceiro.exceptions.SenhaInseguraException;
@@ -13,7 +11,7 @@ import controleFinanceiro.util.Email;
  * @author team
  * 
  */
-public class Usuario implements Serializable {
+public class Usuario {
 
 	/**
 	 * 
@@ -229,7 +227,8 @@ public class Usuario implements Serializable {
 	/**
 	 * Define stats do usuário
 	 * 
-	 * @param status Status do usuário
+	 * @param status
+	 *            Status do usuário
 	 */
 	public void setStatus(boolean status) {
 		this.status = status;
