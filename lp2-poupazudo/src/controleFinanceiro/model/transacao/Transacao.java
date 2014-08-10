@@ -8,31 +8,32 @@ import controleFinanceiro.model.categoria.Categoria;
 import controleFinanceiro.model.conta.Conta;
 
 public abstract class Transacao {
-	
+
 	private Calendar calendario;
-	
+
 	private DateFormat data;
-	
+
 	private double valor;
-	
+
 	private Categoria categoria;
-	
+
 	private Recorrencia recorrencia;
-	
+
 	private String descricao;
-	
+
 	private Conta conta;
 
 	private int repeticao;
-	
+
 	protected int ocorrencias;
-	
+
 	private int dia_semana;
-	
+
 	private int dia_mes;
-	
+
+	private boolean fixo;
 	public Transacao(SimpleDateFormat data, double valor, Categoria categoria,
-			Recorrencia recorrencia, String descricao, Conta conta, int repeticao) {
+			Recorrencia recorrencia, String descricao, Conta conta, int repeticao, boolean fixo) {
 		this.data = data;
 		this.valor = valor;
 		this.categoria = categoria;
@@ -40,7 +41,8 @@ public abstract class Transacao {
 		this.descricao = descricao;
 		this.conta = conta;
 		this.repeticao = repeticao;
-		
+		this.fixo = fixo;
+
 		ocorrencias = repeticao * recorrencia.getValor();
 		calendario = data.getCalendar();
 		dia_semana = calendario.get(Calendar.DAY_OF_WEEK);
@@ -109,27 +111,43 @@ public abstract class Transacao {
 
 	public void atualizaTransacao() {
 		Calendar calendarioAtual = Calendar.getInstance();
-		switch ( getRecorrencia().getValor()){
-		case 4:
-			if (calendarioAtual.get(Calendar.DAY_OF_WEEK) == dia_semana)
-				if (ocorrencias > 0){
-					alteraSaldo(valor);
-					ocorrencias --;
-				}
-			
-		case 1:
-			if (calendarioAtual.get(Calendar.DAY_OF_MONTH) == dia_mes)
-					if (ocorrencias > 0){
-						alteraSaldo(valor);
-						ocorrencias --;
-					}
-			
-		case 0:
+		if (getRecorrencia().getValor() == 0)
 			alteraSaldo(valor);
+
+		else {
+			if (fixo){
+				switch ( getRecorrencia().getValor()){
+				case 4:
+					if (calendarioAtual.get(Calendar.DAY_OF_WEEK) == dia_semana)
+						alteraSaldo(valor);
+
+
+				case 1:
+					if (calendarioAtual.get(Calendar.DAY_OF_MONTH) == dia_mes)
+						alteraSaldo(valor);		
+				}
+			}
+
+			else {
+				switch ( getRecorrencia().getValor()){
+				case 4:
+					if (calendarioAtual.get(Calendar.DAY_OF_WEEK) == dia_semana)
+						if (ocorrencias > 0){
+							alteraSaldo(valor);
+							ocorrencias --;
+						}
+
+				case 1:
+					if (calendarioAtual.get(Calendar.DAY_OF_MONTH) == dia_mes)
+						if (ocorrencias > 0){
+							alteraSaldo(valor);
+							ocorrencias --;
+						}
+				}
+			}
 		}
-		
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Transacao [data=" + data + ", valor=" + valor + ", categoria="
