@@ -4,9 +4,8 @@ public class Conta {
 
 	private String nome;
 	private double saldo;
-	
-	
-	public Conta (String nome, double saldo){
+
+	public Conta(String nome, double saldo) {
 		this.nome = nome;
 		this.saldo = saldo;
 	}
@@ -24,13 +23,13 @@ public class Conta {
 	}
 
 	public void setSaldo(double saldo) {
-		this.saldo = saldo;}
+		this.saldo = saldo;
+	}
 
 	@Override
 	public String toString() {
 		return "Conta [nome=" + nome + ", saldo=" + saldo + "]";
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -51,7 +50,5 @@ public class Conta {
 			return false;
 		return true;
 	}
-	
-	
-}
 
+}

@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class Categoria {
 	private String nome;
 	private int[] cor;
-	
+
 	public Categoria(String nome, int[] cor) {
 		this.nome = nome;
 		this.cor = cor;
@@ -27,7 +27,7 @@ public class Categoria {
 		this.cor = cor;
 	}
 
-@Override
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -45,7 +45,8 @@ public class Categoria {
 			return false;
 		return true;
 	}
-@Override
+
+	@Override
 	public String toString() {
 		return "Nome " + nome + ", Cor " + Arrays.toString(cor);
 	}
