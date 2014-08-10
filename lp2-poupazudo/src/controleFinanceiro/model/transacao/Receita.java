@@ -2,8 +2,8 @@ package controleFinanceiro.model.transacao;
 
 import java.text.SimpleDateFormat;
 
-import controleFinanceiro.model.Conta;
 import controleFinanceiro.model.categoria.Categoria;
+import controleFinanceiro.model.conta.Conta;
 
 public class Receita extends Transacao {
 
