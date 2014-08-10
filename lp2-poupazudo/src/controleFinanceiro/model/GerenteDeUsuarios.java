@@ -28,6 +28,10 @@ public class GerenteDeUsuarios {
 	 * @throws IOException
 	 */
 	public GerenteDeUsuarios() {
+
+		usuarios = new ArrayList<Usuario>();
+		usuarioLocal = null;
+
 		recuperarDados();
 	}
 
@@ -57,12 +61,12 @@ public class GerenteDeUsuarios {
 	 * @return Usuário
 	 */
 	public Usuario pesquisar(String email) {
-		
-			for (Usuario usr : usuarios) {
-				if (usr.getEmail().equals(email))
-					return usr;
-			}
-		
+
+		for (Usuario usr : usuarios) {
+			if (usr.getEmail().equals(email))
+				return usr;
+		}
+
 		return null;
 	}
 
@@ -121,10 +125,10 @@ public class GerenteDeUsuarios {
 	public static Usuario getUsuarioLocal() {
 		return usuarioLocal;
 	}
-	
+
 	public static void logout() {
 		atualizar();
 		usuarioLocal = null;
 	}
-	
+
 }
