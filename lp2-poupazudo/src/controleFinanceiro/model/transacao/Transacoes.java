@@ -5,31 +5,61 @@ import java.util.List;
 
 public class Transacoes {
 	private List<Transacao> transacoes;
+	private List<Transacao> transacoesEspecificas;
 	
 	public Transacoes() {
 		transacoes = new ArrayList<Transacao>();
 	}
 	
-	public void addTransacao(Transacao tran) {
-		transacoes.add(tran);
+	public List<Transacao> getTransacoes() {
+		return transacoes;
 	}
 	
-	public boolean removerTransacao(Transacao tran) {
+	public List<Transacao> getDespesas() {
+		transacoesEspecificas = null;
 		for (Transacao trans : transacoes) {
-			if (trans.equals(tran)) {
-				transacoes.remove(trans);
-				return true;
+			if (trans instanceof Despesa) {
+				transacoesEspecificas.add(trans);
 			}
 		}
-		
-		return false;
+		return transacoesEspecificas;
+ 	}
+	
+	public List<Transacao> getReceita() {
+		transacoesEspecificas = null;
+		for (Transacao trans : transacoes) {
+			if (trans instanceof Receita) {
+				transacoesEspecificas.add(trans);
+			}
+		}
+		return transacoesEspecificas;
+ 	}
+	
+	public void addTransacao(Transacao tran) throws Exception {
+		if (tran instanceof Transacao) 
+			transacoes.add(tran);
+		else {
+			Exception e = new Exception("Tipo diferente do esperado");
+			throw e;
+		}
+	}
+	
+	public void removeTransacao(Transacao tran) throws Exception {
+		transacoes.remove(pesquisaTransacao(tran.getDescricao()));
 	}
 
-	public Transacao pesquisarTransacao(String desc) {
-		for (Transacao trans : transacoes) {
-			if (trans.getDescricao().equals(desc))
-				return trans;
+	public Transacao pesquisaTransacao(String desc) throws Exception {
+		if (transacoes != null) {
+			for (Transacao trans : transacoes) {
+				if (trans.getDescricao().equals(desc))
+					return trans;
+			}
+			return null;
 		}
-		return null;
+		else {
+			Exception e = new Exception("Coleçao vazia");
+			throw e;
+		}
+		
 	}
 }

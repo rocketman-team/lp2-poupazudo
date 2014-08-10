@@ -2,6 +2,7 @@ package controleFinanceiro.model.transacao;
 
 import java.text.*;
 
+import controleFinanceiro.model.Conta;
 import controleFinanceiro.model.categoria.Categoria;
 
 public abstract class Transacao {
@@ -10,13 +11,15 @@ public abstract class Transacao {
 	private Categoria categoria;
 	private Recorrencia recorrencia;
 	private String descricao;
+	private Conta conta;
 	
-	public Transacao(SimpleDateFormat data, double valor, Categoria categoria, Recorrencia recorrencia, String descricao) {
+	public Transacao(SimpleDateFormat data, double valor, Categoria categoria, Recorrencia recorrencia, String descricao, Conta conta) {
 		this.data = data;
 		this.valor = valor;
 		this.categoria = categoria;
 		this.recorrencia = recorrencia;
 		this.descricao = descricao;
+		this.conta = conta;
 	}
 
 	public DateFormat getData() {
@@ -31,8 +34,9 @@ public abstract class Transacao {
 		return valor;
 	}
 
-	public void setValor(double valor) {
+	public boolean setValor(double valor) {
 		this.valor = valor;
+		return true;
 	}
 
 	public Categoria getCategoria() {
@@ -43,12 +47,13 @@ public abstract class Transacao {
 		this.categoria = categoria;
 	}
 
-	public int getRecorrencia() {
-		return recorrencia.getValor();
+	public Recorrencia getRecorrencia() {
+		return recorrencia;
 	}
 
-	public void setRecorrencia(Recorrencia recorrencia) {
+	public boolean setRecorrencia(Recorrencia recorrencia) {
 		this.recorrencia = recorrencia;
+		return true;
 	}
 	
 	public void setDescricao(String des) {
@@ -58,6 +63,17 @@ public abstract class Transacao {
 	public String getDescricao() {
 		return descricao;
 	}
+	
+	public Conta getConta() {
+		return conta;
+	}
+
+	public void setConta(Conta conta) {
+		this.conta = conta;
+	}
+	
+	public abstract void alteraSaldo(double valor);
+	
 
 @Override
 	public String toString() {
@@ -87,6 +103,11 @@ public boolean equals(Object obj) {
 	if (Double.doubleToLongBits(valor) != Double.doubleToLongBits(other.valor))
 		return false;
 	return true;
+}
+
+public void alteraSaldo() {
+	// TODO Auto-generated method stub
+	
 }
 	
 	
