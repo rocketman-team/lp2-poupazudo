@@ -6,14 +6,21 @@ import controleFinanceiro.model.Conta;
 import controleFinanceiro.model.categoria.Categoria;
 
 public abstract class Transacao {
-	private DateFormat data;
-	private double valor;
-	private Categoria categoria;
-	private Recorrencia recorrencia;
-	private String descricao;
-	private Conta conta;
 	
-	public Transacao(SimpleDateFormat data, double valor, Categoria categoria, Recorrencia recorrencia, String descricao, Conta conta) {
+	private DateFormat data;
+	
+	private double valor;
+	
+	private Categoria categoria;
+	
+	private Recorrencia recorrencia;
+	
+	private String descricao;
+	
+	private Conta conta;
+
+	public Transacao(SimpleDateFormat data, double valor, Categoria categoria,
+			Recorrencia recorrencia, String descricao, Conta conta) {
 		this.data = data;
 		this.valor = valor;
 		this.categoria = categoria;
@@ -55,15 +62,15 @@ public abstract class Transacao {
 		this.recorrencia = recorrencia;
 		return true;
 	}
-	
+
 	public void setDescricao(String des) {
 		descricao = des;
 	}
-	
+
 	public String getDescricao() {
 		return descricao;
 	}
-	
+
 	public Conta getConta() {
 		return conta;
 	}
@@ -71,44 +78,42 @@ public abstract class Transacao {
 	public void setConta(Conta conta) {
 		this.conta = conta;
 	}
-	
-	public abstract void alteraSaldo(double valor);
-	
 
-@Override
+	public abstract void alteraSaldo(double valor);
+
+	@Override
 	public String toString() {
-		return "Data " + data + ", Valor " + valor + ", Categoria "
-				+ categoria + ", Recorrencia " + recorrencia;
+		return "Data " + data + ", Valor " + valor + ", Categoria " + categoria
+				+ ", Recorrencia " + recorrencia;
 	}
 
-@Override
-public boolean equals(Object obj) {
-	if (this == obj)
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof Transacao))
+			return false;
+		Transacao other = (Transacao) obj;
+		if (categoria == null) {
+			if (other.categoria != null)
+				return false;
+		} else if (!categoria.equals(other.categoria))
+			return false;
+		if (data == null) {
+			if (other.data != null)
+				return false;
+		} else if (!data.equals(other.data))
+			return false;
+		if (Double.doubleToLongBits(valor) != Double
+				.doubleToLongBits(other.valor))
+			return false;
 		return true;
-	if (obj == null)
-		return false;
-	if (!(obj instanceof Transacao))
-		return false;
-	Transacao other = (Transacao) obj;
-	if (categoria == null) {
-		if (other.categoria != null)
-			return false;
-	} else if (!categoria.equals(other.categoria))
-		return false;
-	if (data == null) {
-		if (other.data != null)
-			return false;
-	} else if (!data.equals(other.data))
-		return false;
-	if (Double.doubleToLongBits(valor) != Double.doubleToLongBits(other.valor))
-		return false;
-	return true;
-}
+	}
 
-public void alteraSaldo() {
-	// TODO Auto-generated method stub
-	
-}
-	
-	
+	public void alteraSaldo() {
+		// TODO Auto-generated method stub
+	}
+
 }

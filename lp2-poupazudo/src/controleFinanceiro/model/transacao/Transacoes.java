@@ -4,17 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Transacoes {
+
 	private List<Transacao> transacoes;
 	private List<Transacao> transacoesEspecificas;
-	
+
 	public Transacoes() {
 		transacoes = new ArrayList<Transacao>();
 	}
-	
+
 	public List<Transacao> getTransacoes() {
 		return transacoes;
 	}
-	
+
 	public List<Transacao> getDespesas() {
 		transacoesEspecificas = null;
 		for (Transacao trans : transacoes) {
@@ -23,8 +24,8 @@ public class Transacoes {
 			}
 		}
 		return transacoesEspecificas;
- 	}
-	
+	}
+
 	public List<Transacao> getReceita() {
 		transacoesEspecificas = null;
 		for (Transacao trans : transacoes) {
@@ -33,17 +34,17 @@ public class Transacoes {
 			}
 		}
 		return transacoesEspecificas;
- 	}
-	
+	}
+
 	public void addTransacao(Transacao tran) throws Exception {
-		if (tran instanceof Transacao) 
+		if (tran instanceof Transacao)
 			transacoes.add(tran);
 		else {
-			Exception e = new Exception("Tipo diferente do esperado");
-			throw e;
+			throw new Exception("Tipo diferente do esperado");
+
 		}
 	}
-	
+
 	public void removeTransacao(Transacao tran) throws Exception {
 		transacoes.remove(pesquisaTransacao(tran.getDescricao()));
 	}
@@ -55,11 +56,8 @@ public class Transacoes {
 					return trans;
 			}
 			return null;
+		} else {
+			throw new Exception("Coleçao vazia");
 		}
-		else {
-			Exception e = new Exception("Coleçao vazia");
-			throw e;
-		}
-		
 	}
 }

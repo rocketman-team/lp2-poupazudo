@@ -6,8 +6,9 @@ import controleFinanceiro.model.Conta;
 import controleFinanceiro.model.categoria.Categoria;
 
 public class Despesa extends Transacao {
-	
-	public Despesa(SimpleDateFormat data, double valor, Categoria categoria, Recorrencia recorrencia, String descricao, Conta conta) {
+
+	public Despesa(SimpleDateFormat data, double valor, Categoria categoria,
+			Recorrencia recorrencia, String descricao, Conta conta) {
 		super(data, valor, categoria, recorrencia, descricao, conta);
 	}
 
@@ -20,11 +21,12 @@ public class Despesa extends Transacao {
 		}
 		return false;
 	}
-	
+
 	@Override
 	public boolean setRecorrencia(Recorrencia recorrencia) {
 		super.setRecorrencia(recorrencia);
-		if (super.getValor()*recorrencia.getValor() <= super.getConta().getSaldo())
+		if (super.getValor() * recorrencia.getValor() <= super.getConta()
+				.getSaldo())
 			return true;
 		return false;
 	}
