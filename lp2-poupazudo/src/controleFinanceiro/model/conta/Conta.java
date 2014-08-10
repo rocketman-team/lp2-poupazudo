@@ -1,11 +1,11 @@
-package controleFinanceiro.model;
+package controleFinanceiro.model.conta;
 
 public class Conta {
 
 	private String nome;
 	private double saldo;
-
-	public Conta(String nome, double saldo) {
+	
+	public Conta (String nome, double saldo){
 		this.nome = nome;
 		this.saldo = saldo;
 	}
@@ -31,6 +31,7 @@ public class Conta {
 		return "Conta [nome=" + nome + ", saldo=" + saldo + "]";
 	}
 
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -50,5 +51,7 @@ public class Conta {
 			return false;
 		return true;
 	}
-
+	
+	
 }
+
