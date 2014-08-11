@@ -7,6 +7,12 @@ import java.util.Calendar;
 import controleFinanceiro.model.categoria.Categoria;
 import controleFinanceiro.model.conta.Conta;
 
+/**
+ * 
+ * @author rocketman team : Daniel Bezerra, Hebert Morais, Helisson Nascimento, Jeferson Ferreira
+ * 
+ * Classe que representa uma transação
+ */
 public abstract class Transacao {
 
 	private Calendar calendario;
@@ -31,7 +37,30 @@ public abstract class Transacao {
 
 	private int dia_mes;
 
+	
 	private boolean fixo;
+	
+	/**
+	 * Inicializa a classe transação
+	 * 
+	 * @param data
+	 * 			Data de inserção
+	 * @param valor
+	 * 			Valor da transacao
+	 * @param categoria
+	 * 			Categoria da transacao
+	 * @param recorrencia
+	 * 			Recorrencia (nenhuma,semanal ou mensal)
+	 * @param descricao
+	 * 			Descrição da transacao
+	 * @param conta
+	 * 			Conta no qual a transação será efetuada
+	 * @param repeticao
+	 * 			A quantidade de recorrencias
+	 * @param fixo
+	 * 			Uma transação sera fixa se não houver repetição definida
+	 */
+	
 	public Transacao(SimpleDateFormat data, double valor, Categoria categoria,
 			Recorrencia recorrencia, String descricao, Conta conta, int repeticao, boolean fixo) {
 		this.data = data;
@@ -49,66 +78,136 @@ public abstract class Transacao {
 		dia_mes = calendario.get(Calendar.DAY_OF_MONTH);
 	}
 
+	/**
+	 * 
+	 * @return  quantidade de repetições
+	 */
 	public int getRepeticao() {
 		return repeticao;
 	}
 
+	/**
+	 * Ajusta o numero de repetições de ocorrencias
+	 * @param repeticao
+	 */
 	public void setRepeticao(int repeticao) {
 		this.repeticao = repeticao;
 	}
 
+	/**
+	 * 
+	 * @return  data de inserção
+	 */
 	public DateFormat getData() {
 		return data;
 	}
 
+	/**
+	 * Ajusta a data
+	 * @param data
+	 */
 	public void setData(DateFormat data) {
 		this.data = data;
 	}
 
+	/**
+	 * 
+	 * @return  valor da transacao
+	 */
 	public double getValor() {
 		return valor;
 	}
 
+	/**
+	 * 
+	 * @param valor
+	 * @return
+	 * 			true se o valor dado for valido, false se o contrario acontecer
+	 */
 	public boolean setValor(double valor) {
-		this.valor = valor;
-		return true;
+		if( valor >= 0){
+			this.valor = valor;
+			return true;
+		}
+		return false;
 	}
 
+	/**
+	 * 
+	 * @return categoria
+	 */
 	public Categoria getCategoria() {
 		return categoria;
 	}
 
+	/**
+	 * Ajusta a categoria
+	 * @param categoria
+	 */
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
 
+	/**
+	 * 
+	 * @return recorrencia
+	 */
 	public Recorrencia getRecorrencia() {
 		return recorrencia;
 	}
 
+	/**
+	 * Ajusta a recorrencia
+	 * @param recorrencia
+	 * @return
+	 */
 	public boolean setRecorrencia(Recorrencia recorrencia) {
 		this.recorrencia = recorrencia;
 		return true;
 	}
 
+	/**
+	 * Ajusta a descricao
+	 * @param des
+	 */
 	public void setDescricao(String des) {
 		descricao = des;
 	}
 
+	/**
+	 * 
+	 * @return descricao
+	 */
 	public String getDescricao() {
 		return descricao;
 	}
 
+	/**
+	 *  
+	 * @return conta
+	 */
 	public Conta getConta() {
 		return conta;
 	}
 
+	/**
+	 * Ajusta a conta
+	 * @param conta
+	 */
 	public void setConta(Conta conta) {
 		this.conta = conta;
 	}
 
+	/**
+	 * Metodo para alterar o valor da transacao
+	 * Metodo abstrato para ser usado pelas subclasses Receita e Despesa
+	 * @param valor
+	 */
 	public abstract void alteraSaldo(double valor);
 
+	/**
+	 * Atualiza a transação, verificando o dia da semana e o dia do mes
+	 */
 	public void atualizaTransacao() {
 		Calendar calendarioAtual = Calendar.getInstance();
 		if (getRecorrencia().getValor() == 0)

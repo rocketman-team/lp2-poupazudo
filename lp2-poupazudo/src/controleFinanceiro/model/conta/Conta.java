@@ -1,7 +1,13 @@
 package controleFinanceiro.model.conta;
-
+/**
+ * 
+ * @author rocketman team : Daniel Bezerra, Hebert Morais, Helisson Nascimento, Jeferson Ferreira
+ *
+ * Classe que representa os atributos(nome da conta e saldo) e comportamentos de uma conta
+ * o saldo dessa conta será alterado por proventos e despesas.
+ */
 public class Conta {
-
+	
 	private String nome;
 	private double saldo;
 	
