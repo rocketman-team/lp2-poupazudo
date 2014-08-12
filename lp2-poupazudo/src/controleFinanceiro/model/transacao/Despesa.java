@@ -36,6 +36,13 @@ public class Despesa extends Transacao {
 		super(data, valor, categoria, recorrencia, descricao, conta, repeticao, fixo);
 	}
 
+	/**
+	 * Seleciona novo valor para a despesa
+	 * @return true
+	 * 		Caso o novo valor da despesa não seja maior que o saldo da conta
+	 * @return false
+	 * 		Caso Contrario
+	*/
 	@Override
 	public boolean setValor(double valor) {
 		if (valor <= super.getConta().getSaldo()) {
@@ -46,6 +53,13 @@ public class Despesa extends Transacao {
 		return false;
 	}
 
+	/**
+	 * Seleciona novo valor de recorrencia
+	 * @return true
+	 * 		Caso a recorrencia do valor não seja maior que o saldo da conta
+	 * @return false
+	 * 		Caso Contrario
+	*/
 	@Override
 	public boolean setRecorrencia(Recorrencia recorrencia) {
 		super.setRecorrencia(recorrencia);
