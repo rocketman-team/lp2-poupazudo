@@ -1,1 +1,8 @@
+controleFinanceiro.exceptions
 controleFinanceiro.model
+controleFinanceiro.model.categoria
+controleFinanceiro.model.conta
+controleFinanceiro.model.transacao
+controleFinanceiro.tests
+controleFinanceiro.ui
+controleFinanceiro.util
