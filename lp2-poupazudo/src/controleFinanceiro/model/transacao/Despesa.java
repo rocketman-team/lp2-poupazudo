@@ -12,10 +12,10 @@ import controleFinanceiro.model.conta.Conta;
 public class Despesa extends Transacao {
 	
 	/**
-	 * Inicializa a classe transação
+	 * Inicializa a classe transaï¿½ï¿½o
 	 * 
 	 * @param data
-	 * 			Data de inserção
+	 * 			Data de inserï¿½ï¿½o
 	 * @param valor
 	 * 			Valor da transacao
 	 * @param categoria
@@ -23,13 +23,13 @@ public class Despesa extends Transacao {
 	 * @param recorrencia
 	 * 			Recorrencia (nenhuma,semanal ou mensal)
 	 * @param descricao
-	 * 			Descrição da transacao
+	 * 			Descriï¿½ï¿½o da transacao
 	 * @param conta
-	 * 			Conta no qual a transação será efetuada
+	 * 			Conta no qual a transaï¿½ï¿½o serï¿½ efetuada
 	 * @param repeticao
 	 * 			A quantidade de recorrencias
 	 * @param fixo
-	 * 			Uma transação sera fixa se não houver repetição definida
+	 * 			Uma transaï¿½ï¿½o sera fixa se nï¿½o houver repetiï¿½ï¿½o definida
 	 */
 	public Despesa(SimpleDateFormat data, double valor, Categoria categoria,
 			Recorrencia recorrencia, String descricao, Conta conta, int repeticao, boolean fixo) {
@@ -37,26 +37,9 @@ public class Despesa extends Transacao {
 	}
 
 	/**
-	 * Seleciona novo valor para a despesa
-	 * @return true
-	 * 		Caso o novo valor da despesa não seja maior que o saldo da conta
-	 * @return false
-	 * 		Caso Contrario
-	*/
-	@Override
-	public boolean setValor(double valor) {
-		if (valor <= super.getConta().getSaldo()) {
-			super.setValor(valor);
-			alteraSaldo(valor);
-			return true;
-		}
-		return false;
-	}
-
-	/**
 	 * Seleciona novo valor de recorrencia
 	 * @return true
-	 * 		Caso a recorrencia do valor não seja maior que o saldo da conta
+	 * 		Caso a recorrencia do valor nï¿½o seja maior que o saldo da conta
 	 * @return false
 	 * 		Caso Contrario
 	*/
@@ -72,7 +55,7 @@ public class Despesa extends Transacao {
 	/**
 	 * Altera o saldo da conta de acordo com o valor dado
 	 * @param valor
-	 * 			Valor da transação
+	 * 			Valor da transaï¿½ï¿½o
 	 */
 	@Override
 	public void alteraSaldo(double valor) {

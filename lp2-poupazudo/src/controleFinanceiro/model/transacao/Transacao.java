@@ -11,7 +11,7 @@ import controleFinanceiro.model.conta.Conta;
  * 
  * @author rocketman team : Daniel Bezerra, Hebert Morais, Helisson Nascimento, Jeferson Ferreira
  * 
- * Classe que representa uma transação
+ * Classe que representa uma transaï¿½ï¿½o
  */
 public abstract class Transacao {
 
@@ -41,10 +41,10 @@ public abstract class Transacao {
 	private boolean fixo;
 	
 	/**
-	 * Inicializa a classe transação
+	 * Inicializa a classe transaï¿½ï¿½o
 	 * 
 	 * @param data
-	 * 			Data de inserção
+	 * 			Data de inserï¿½ï¿½o
 	 * @param valor
 	 * 			Valor da transacao
 	 * @param categoria
@@ -52,13 +52,13 @@ public abstract class Transacao {
 	 * @param recorrencia
 	 * 			Recorrencia (nenhuma,semanal ou mensal)
 	 * @param descricao
-	 * 			Descrição da transacao
+	 * 			Descriï¿½ï¿½o da transacao
 	 * @param conta
-	 * 			Conta no qual a transação será efetuada
+	 * 			Conta no qual a transaï¿½ï¿½o serï¿½ efetuada
 	 * @param repeticao
 	 * 			A quantidade de recorrencias
 	 * @param fixo
-	 * 			Uma transação sera fixa se não houver repetição definida
+	 * 			Uma transaï¿½ï¿½o sera fixa se nï¿½o houver repetiï¿½ï¿½o definida
 	 */
 	
 	public Transacao(SimpleDateFormat data, double valor, Categoria categoria,
@@ -80,14 +80,14 @@ public abstract class Transacao {
 
 	/**
 	 * 
-	 * @return  quantidade de repetições
+	 * @return  quantidade de repetiï¿½ï¿½es
 	 */
 	public int getRepeticao() {
 		return repeticao;
 	}
 
 	/**
-	 * Ajusta o numero de repetições de ocorrencias
+	 * Ajusta o numero de repetiï¿½ï¿½es de ocorrencias
 	 * @param repeticao
 	 */
 	public void setRepeticao(int repeticao) {
@@ -96,7 +96,7 @@ public abstract class Transacao {
 
 	/**
 	 * 
-	 * @return  data de inserção
+	 * @return  data de inserï¿½ï¿½o
 	 */
 	public DateFormat getData() {
 		return data;
@@ -121,15 +121,14 @@ public abstract class Transacao {
 	/**
 	 * 
 	 * @param valor
-	 * @return
-	 * 			true se o valor dado for valido, false se o contrario acontecer
+	 * @throws Exeception
+	 * 		Caso o parametro inserido seja negativo.
 	 */
-	public boolean setValor(double valor) {
-		if( valor >= 0){
-			this.valor = valor;
-			return true;
+	public void setValor(double valor) throws Exception {
+		if( valor < 0){
+			throw new Exception("O valor da transaÃ§ao deve ser positivo");
 		}
-		return false;
+		else this.valor = valor;
 	}
 
 	/**
@@ -206,7 +205,7 @@ public abstract class Transacao {
 	public abstract void alteraSaldo(double valor);
 
 	/**
-	 * Atualiza a transação, verificando o dia da semana e o dia do mes
+	 * Atualiza a transaï¿½ï¿½o, verificando o dia da semana e o dia do mes
 	 */
 	public void atualizaTransacao() {
 		Calendar calendarioAtual = Calendar.getInstance();
