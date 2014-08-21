@@ -6,17 +6,12 @@ import controleFinanceiro.exceptions.SenhaInseguraException;
 import controleFinanceiro.util.Email;
 
 /**
- * Classe que representa o usuário
+ * Classe que representa o usuï¿½rio
  * 
  * @author team
  * 
  */
 public class Usuario {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 4928907760275398473L;
 
 	private String nome;
 
@@ -29,16 +24,16 @@ public class Usuario {
 	private boolean status;
 
 	/**
-	 * Inicializa um novo usuário
+	 * Inicializa um novo usuï¿½rio
 	 * 
 	 * @param email
-	 *            Email do usuário
+	 *            Email do usuï¿½rio
 	 * @param nome
-	 *            Nome do usuário
+	 *            Nome do usuï¿½rio
 	 * @param senha
-	 *            Senha do usuário
+	 *            Senha do usuï¿½rio
 	 * @throws NomeIncorretoException
-	 *             Email já esta associada a uma conta
+	 *             Email jï¿½ esta associada a uma conta
 	 * @throws EmailIncorretoException
 	 *             Email incorreto
 	 * @throws SenhaInseguraException
@@ -59,18 +54,18 @@ public class Usuario {
 	}
 
 	/**
-	 * Inicializa um novo usuário
+	 * Inicializa um novo usuï¿½rio
 	 * 
 	 * @param nome
-	 *            Nome do usuário
+	 *            Nome do usuï¿½rio
 	 * @param email
-	 *            Email do usuário
+	 *            Email do usuï¿½rio
 	 * @param senha
-	 *            Senha do usuário
+	 *            Senha do usuï¿½rio
 	 * @param dica
-	 *            Dica de senha do usuário
+	 *            Dica de senha do usuï¿½rio
 	 * @throws EmailIncorretoException
-	 *             Email já esta associada a uma conta
+	 *             Email jï¿½ esta associada a uma conta
 	 * @throws NomeIncorretoException
 	 *             NomeIncorretoException
 	 * @throws SenhaInseguraException
@@ -92,10 +87,10 @@ public class Usuario {
 	}
 
 	/**
-	 * Checa se o nome não é vazio
+	 * Checa se o nome nï¿½o ï¿½ vazio
 	 * 
 	 * @param nome
-	 *            Nome do usuário
+	 *            Nome do usuï¿½rio
 	 * @throws NomeIncorretoException
 	 *             Nome incorreto
 	 */
@@ -107,10 +102,10 @@ public class Usuario {
 	}
 
 	/**
-	 * Checa se o email é válido
+	 * Checa se o email ï¿½ vï¿½lido
 	 * 
 	 * @param email
-	 *            Email do usuário
+	 *            Email do usuï¿½rio
 	 * @throws EmailIncorretoException
 	 *             Email incorreto
 	 */
@@ -122,10 +117,10 @@ public class Usuario {
 	}
 
 	/**
-	 * Checa se a senha é segura
+	 * Checa se a senha ï¿½ segura
 	 * 
 	 * @param senha
-	 *            Senha do usuário
+	 *            Senha do usuï¿½rio
 	 * @throws SenhaInseguraException
 	 *             Senha insegura
 	 */
@@ -136,21 +131,21 @@ public class Usuario {
 	}
 
 	/**
-	 * Retorna o email do usuário
+	 * Retorna o email do usuï¿½rio
 	 * 
-	 * @return Email do usuário
+	 * @return Email do usuï¿½rio
 	 */
 	public String getEmail() {
 		return email;
 	}
 
 	/**
-	 * Define o email do usuário
+	 * Define o email do usuï¿½rio
 	 * 
 	 * @param email
-	 *            Email do usuário
+	 *            Email do usuï¿½rio
 	 * @throws EmailIncorretoException
-	 *             Email já esta associada a uma conta
+	 *             Email jï¿½ esta associada a uma conta
 	 * @throws NomeIncorretoException
 	 *             Nome incorreto
 	 */
@@ -159,38 +154,38 @@ public class Usuario {
 	}
 
 	/**
-	 * Retorna o nome do usuário
+	 * Retorna o nome do usuï¿½rio
 	 * 
-	 * @return Nome do usuário
+	 * @return Nome do usuï¿½rio
 	 */
 	public String getNome() {
 		return nome;
 	}
 
 	/**
-	 * Define o nome do usuário
+	 * Define o nome do usuï¿½rio
 	 * 
 	 * @param nome
-	 *            Nome do usuário
+	 *            Nome do usuï¿½rio
 	 */
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
 	/**
-	 * Retorna a senha do usuário
+	 * Retorna a senha do usuï¿½rio
 	 * 
-	 * @return Senha do usuário
+	 * @return Senha do usuï¿½rio
 	 */
 	public String getSenha() {
 		return senha;
 	}
 
 	/**
-	 * Define a senha do usuário
+	 * Define a senha do usuï¿½rio
 	 * 
 	 * @param senha
-	 *            Senha do usuário
+	 *            Senha do usuï¿½rio
 	 */
 	public void setSenha(String senha) {
 		this.senha = senha;
@@ -206,7 +201,7 @@ public class Usuario {
 	}
 
 	/**
-	 * Define a dica de senha do usuário
+	 * Define a dica de senha do usuï¿½rio
 	 * 
 	 * @param dicaDeSenha
 	 *            Dica de senha
@@ -216,19 +211,19 @@ public class Usuario {
 	}
 
 	/**
-	 * Retorna status do usuário
+	 * Retorna status do usuï¿½rio
 	 * 
-	 * @return Status do usuário
+	 * @return Status do usuï¿½rio
 	 */
 	public boolean isStatus() {
 		return status;
 	}
 
 	/**
-	 * Define stats do usuário
+	 * Define stats do usuï¿½rio
 	 * 
 	 * @param status
-	 *            Status do usuário
+	 *            Status do usuï¿½rio
 	 */
 	public void setStatus(boolean status) {
 		this.status = status;
